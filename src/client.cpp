@@ -11,7 +11,7 @@ int main(){
     std::string name;
     std::cout<<"Username: ";
     std::getline(std::cin,name);
-    //Send loop
+    //Send loop (We make a thread so it works simultaniously with the rest)
     std::thread([clientID, name](){
         while(true){
             std::getline(std::cin, msg);
@@ -19,13 +19,15 @@ int main(){
             sendMsg(msgU,clientID);
         }
     }).detach();
-    //Recv loop
+    //Recv loop (Again, a thread so it works simultaniously)
     std::thread([client](){
         while(true){
             recvd = recvMsg(client);
             std::cout<<recvd<<'\n';
         }
     }).detach();
+    //So main() doesn't return anything and runs forever.
+    //Timer for 100ms so it doesn't tank cpu usage for no reason.
     while(true){
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
