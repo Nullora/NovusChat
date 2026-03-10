@@ -4,7 +4,7 @@ std::string msg;
 std::string recvd;
 int main(){
     //Initial setup
-    int client = runClient("127.0.0.1",7878);
+    int client = runClient("127.0.0.1",7878,"MY_PASSWORD");
     recvd = recvMsg(client);
     int clientID = std::stoi(recvd);
     //username selection
