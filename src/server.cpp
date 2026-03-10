@@ -14,7 +14,7 @@ int main(){
         }
     });
     //So main() doesn't return anything and runs forever.
-    //Timer for 100ms so it doesn't tank cpu usage for no reason.
+    //timer for 100ms so it doesn't tank cpu usage for no reason.
     while(true){
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
